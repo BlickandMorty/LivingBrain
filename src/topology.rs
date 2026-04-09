@@ -16,8 +16,9 @@
 //!
 //! Based on Gemini's "V3 Cognitive Vault Architecture: Endless Sentience Blueprint".
 
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
+#![allow(clippy::too_many_arguments, clippy::manual_clamp)]
+
+use std::path::Path;
 use std::{fs, io};
 
 use serde::{Deserialize, Serialize};
