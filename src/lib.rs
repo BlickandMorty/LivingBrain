@@ -12,8 +12,10 @@
 //! - **Metrics** — TRACED reasoning trajectory quality measurement
 //! - **Evolution** — GEPA skill extraction from successful agent traces
 
+pub mod cache;
+pub mod classifier;
+pub mod contradictions;
 pub mod decay;
 pub mod diff;
 pub mod metrics;
-pub mod classifier;
-pub mod contradictions;
+pub mod topology;
