@@ -1,13 +1,7 @@
-//! Neural Cache — Tiered instant retrieval across memory layers.
+//! In-memory hot cache with text matching, eviction, and time-window retrieval.
 //!
-//! 5-layer architecture:
-//! - Layer 0: Working context (current conversation) — 0ms
-//! - Layer 1: Hot facts (in-memory LRU) — <1ms
-//! - Layer 2: Warm search (user-provided backend) — <5ms
-//! - Layer 3: Cold vault (filesystem fallback) — <50ms
-//!
-//! Facts automatically warm from Cold → Warm → Hot based on access patterns.
-//! Extracted from Epistemos agent_core.
+//! Warm and cold result labels are defined, but complete backends for those
+//! layers are not implemented here. No latency guarantee is established.
 
 use std::collections::HashMap;
 use std::sync::Mutex;
@@ -18,11 +12,11 @@ use serde::{Deserialize, Serialize};
 /// Which cache layer a result was retrieved from.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum CacheLayer {
-    /// Layer 1: Hot facts (pre-warmed, <1ms).
+    /// Hot facts held in memory.
     Hot,
-    /// Layer 2: Warm search (backend-provided, <5ms).
+    /// Warm result label; backend not implemented here.
     Warm,
-    /// Layer 3: Cold vault (filesystem, <50ms).
+    /// Cold result label; backend not implemented here.
     Cold,
 }
 

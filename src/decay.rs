@@ -1,10 +1,9 @@
-//! Ebbinghaus forgetting curve with CMS-X conceptual inertia.
+//! Exponential decay with an access-count adjustment.
 //!
-//! Facts decay exponentially over time: `strength(t) = s₀ × e^(-λ_eff × days)`
-//! where `λ_eff = λ_base / (1 + ln(access_count))`.
-//!
-//! Frequently-accessed facts resist displacement (conceptual inertia).
-//! Pinned facts never decay. Garbage collection removes facts below threshold.
+//! strength(t) = s0 * exp(-effective_rate * elapsed_days), where
+//! effective_rate = base_rate / (1 + ln(max(access_count, 1))).
+//! These are software rules, not parameters fitted to human memory data.
+//! Pinned facts are exempt from decay.
 
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
@@ -66,9 +65,9 @@ impl NodeStrength {
         }
     }
 
-    /// CMS-X conceptual inertia: frequently-accessed facts resist displacement.
+    /// Access-count heuristic: frequently accessed entries decay more slowly.
     ///
-    /// Logarithmic damping: access_count=1 → 1.0x decay, 50 → ~0.26x, 1000 → ~0.14x.
+    /// Logarithmic damping: access_count=1 → 1.0x decay, 50 → ~0.20x, 1000 → ~0.14x.
     pub fn effective_decay_rate(&self) -> f64 {
         self.decay_rate / (1.0 + (self.access_count.max(1) as f64).ln())
     }
@@ -79,7 +78,7 @@ impl NodeStrength {
     }
 }
 
-/// Apply Ebbinghaus decay to a single node.
+/// Apply the exponential decay rule to a single node.
 pub fn decay(node: &mut NodeStrength, now: DateTime<Utc>) {
     if now <= node.last_accessed {
         return;

@@ -1,20 +1,8 @@
-//! Hyperbolic Vault Topology — Poincaré Disk Embedding for Spatial Awareness
+//! File-hierarchy coordinates and descriptive tags.
 //!
-//! Embeds the vault's hierarchical file structure into the Poincaré disk model
-//! of hyperbolic space. In hyperbolic geometry, circumference grows exponentially
-//! with radius — perfectly matching how knowledge trees scale (root → projects
-//! → sub-projects → files → functions).
-//!
-//! Each node gets three dimensional tags:
-//! - **Complexity Weight (Cw):** Token count + structural density (1.0–10.0)
-//! - **Gravity (Gv):** How many other nodes reference this one (link degree)
-//! - **Volatility (Vs):** Edit recency heat-map (0.0 = stale, 1.0 = just changed)
-//!
-//! Folders act as **Markov Blankets** (from Karl Friston's Free Energy Principle):
-//! the boundary representation summarizes internal complexity so the AI can decide
-//! whether to "pierce" the blanket (read the files) or stay at the boundary level.
-//!
-//! Based on Gemini's "V3 Cognitive Vault Architecture: Endless Sentience Blueprint".
+//! The code places directory entries in disk coordinates and summarizes their
+//! contents. Names such as Markov blanket and gravity are software metaphors;
+//! this does not establish conditional independence or a cognitive mechanism.
 
 #![allow(clippy::too_many_arguments, clippy::manual_clamp)]
 

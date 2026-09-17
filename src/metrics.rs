@@ -1,10 +1,7 @@
-//! TRACED-inspired reasoning trajectory metrics.
+//! Heuristic summaries of tool-call sequences.
 //!
-//! Measures agent quality by analyzing tool call sequences as geometric
-//! trajectories. Efficient agents produce high displacement (progress)
-//! with low curvature (direct path). Hallucinating agents loop.
-//!
-//! Reference: TRACED (arXiv:2603.10384) — displacement and curvature metrics.
+//! Text-overlap distances, repetition, and errors describe a trace. Category
+//! names do not establish reasoning quality, progress, or hallucination.
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};

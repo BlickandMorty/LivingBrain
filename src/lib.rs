@@ -1,16 +1,11 @@
 //! # LivingBrain
 //!
-//! A memory system that forgets, learns, and evolves — like a biological brain.
+//! Experimental software-memory utilities with substantial AI assistance.
 //!
-//! LivingBrain provides six core systems for building AI agents and knowledge
-//! managers with human-like memory:
-//!
-//! - **Decay** — Ebbinghaus forgetting curve with CMS-X conceptual inertia
-//! - **Cache** — 5-layer tiered retrieval from <1ms to <50ms
-//! - **Contradictions** — Detect conflicting facts instead of silent overwrite
-//! - **Diff** — Text + JSON diff engine with fuzzy patching
-//! - **Metrics** — TRACED reasoning trajectory quality measurement
-//! - **Evolution** — GEPA skill extraction from successful agent traces
+//! Modules cover decay, an in-memory cache, text-conflict heuristics,
+//! memory-operation classification, text differences, tool-call summaries,
+//! and file-hierarchy coordinates. These mechanisms are not validated models
+//! of human memory, reasoning, or consciousness. See the README for scope.
 
 pub mod cache;
 pub mod classifier;
